@@ -50,6 +50,8 @@ def monitor_ip(interval=300, log_file='ip_changes.csv'):
             if current_ip != last_ip:
                 record_ip_change(current_ip, log_file)
                 last_ip = current_ip
+            else:
+                print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} IP未发生变化。")
         else:
             print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 未能获取当前IP，稍后重试。")
         time.sleep(interval)

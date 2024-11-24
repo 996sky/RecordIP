@@ -3,4 +3,4 @@ WORKDIR /app
 COPY . /app
 RUN pip install --no-cache-dir pandas requests
 
-CMD ["python", "RecordIP.py"]
+CMD ["python", "-u", "RecordIP.py"]
