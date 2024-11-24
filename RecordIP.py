@@ -33,7 +33,7 @@ def record_ip_change(current_ip, file_path='ip_changes.log'):
 
     print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 新IP已记录: {current_ip}")
 
-def monitor_ip(interval=300, log_file='ip_changes.csv'):
+def monitor_ip(interval=300, log_file='output/ip_changes.csv'):
     # interval间隔时间（秒）， log_file日志文件路径
     # 监控公网IP变化
     last_ip = None
@@ -57,4 +57,4 @@ def monitor_ip(interval=300, log_file='ip_changes.csv'):
         time.sleep(interval)
 
 if __name__ == "__main__":
-    monitor_ip(interval=600)   # 每十分钟检查一次                         
+    monitor_ip(interval=10)   # 检查间隔时间（秒）                         
