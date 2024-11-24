@@ -42,10 +42,12 @@ def monitor_ip(interval=300, log_file='output/ip_changes.csv'):
         df = pd.read_csv(log_file)
         last_ip = df['IP Address'].iloc[-1]
 
+    current_ip = get_public_ip()
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 当前IP: {current_ip}， 每隔{interval/60}分钟检查一次")
+    print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 监控中...")
+
     while True:
         current_ip = get_public_ip()
-        print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 当前IP: {current_ip}， 每隔{interval/60}分钟检查一次")
-        print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} 监控中...")
         if current_ip:
             if current_ip != last_ip:
                 record_ip_change(current_ip, log_file)
@@ -57,4 +59,4 @@ def monitor_ip(interval=300, log_file='output/ip_changes.csv'):
         time.sleep(interval)
 
 if __name__ == "__main__":
-    monitor_ip(interval=10)   # 检查间隔时间（秒）                         
+    monitor_ip(interval=1800)   # 检查间隔时间（秒）                         
