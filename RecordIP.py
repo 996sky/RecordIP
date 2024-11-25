@@ -21,8 +21,9 @@ def record_ip_change(current_ip, file_path='ip_changes.log'):
     # 如果文件不存在，创建文件并写入表头
     if not os.path.exists(file_path):
         df = pd.DataFrame(columns=["Time", "IP Address"])
+        if not os.path.exists(os.path.dirname(file_path)):
+            os.makedirs(os.path.dirname(file_path))
         df.to_csv(file_path, index=False)
-
     # 追加新IP记录
     new_data = pd.DataFrame({
         "Time": [time.strftime('%Y-%m-%d %H:%M:%S')],
